@@ -1,0 +1,89 @@
+LAMMPS (2 Aug 2023 - Update 3)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from C:\Users\Admin\AppData\Local\LAMMPS 64-bit 2Aug2023\plugins
+units lj
+dimension 3
+atom_style atomic
+pair_style lj/cut 2.5
+boundary p p p
+region simulation_box block -20 20 -20 20 -20 20
+create_box 2 simulation_box
+Created orthogonal box = (-20 -20 -20) to (20 20 20)
+  1 by 1 by 1 MPI processor grid
+create_atoms 1 random 5000 341341 simulation_box
+Created 5000 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.001 seconds
+create_atoms 2 random 1000 127569 simulation_box
+Created 1000 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.001 seconds
+mass 1 1
+mass 2 1
+pair_coeff 1 1 1.0 1.0
+pair_coeff 2 2 0.5 3.0
+thermo 10
+thermo_style custom step temp etotal ke pe ebond eangle edihed evdwl
+dump mf1 all xyz 50 LJmin-*.xyz
+min_style cg
+minimize 1.0e-6 1.0e-8 1000 10000
+Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 2.8
+  ghost atom cutoff = 2.8
+  binsize = 1.4, bins = 29 29 29
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.452 | 4.452 | 4.452 Mbytes
+   Step          Temp          TotEng         KinEng         PotEng         E_bond        E_angle        E_dihed         E_vdwl    
+         0   0              1.947639e+10   0              1.947639e+10   0              0              0              1.947639e+10 
+        10   0              47870.332      0              47870.332      0              0              0              47870.332    
+        20   0              102.15764      0              102.15764      0              0              0              102.15764    
+        30   0              1.714859       0              1.714859       0              0              0              1.714859     
+        40   0             -0.99314934     0             -0.99314934     0              0              0             -0.99314934   
+        50   0             -1.0938569      0             -1.0938569      0              0              0             -1.0938569    
+        60   0             -1.1623307      0             -1.1623307      0              0              0             -1.1623307    
+        70   0             -1.1891884      0             -1.1891884      0              0              0             -1.1891884    
+        73   0             -1.1891917      0             -1.1891917      0              0              0             -1.1891917    
+Loop time of 0.220821 on 1 procs for 73 steps with 6000 atoms
+
+99.1% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = energy tolerance
+  Energy initial, next-to-last, final = 
+      19476390081.9649  -1.18919105598657  -1.18919172265652
+  Force two-norm initial, final = 1.0163072e+16 116.70899
+  Force max component initial, final = 4.6687577e+15 10.39165
+  Final line search alpha, max atom move = 2.9365747e-07 3.0515856e-06
+  Iterations, force evaluations = 73 236
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.12724    | 0.12724    | 0.12724    |   0.0 | 57.62
+Neigh   | 0.048166   | 0.048166   | 0.048166   |   0.0 | 21.81
+Comm    | 0.005426   | 0.005426   | 0.005426   |   0.0 |  2.46
+Output  | 0.009452   | 0.009452   | 0.009452   |   0.0 |  4.28
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.03054    |            |       | 13.83
+
+Nlocal:           6000 ave        6000 max        6000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           2941 ave        2941 max        2941 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          25403 ave       25403 max       25403 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 25403
+Ave neighs/atom = 4.2338333
+Neighbor list builds = 24
+Dangerous builds = 0
+Total wall time: 0:00:00
